@@ -1,0 +1,17 @@
+name: JumpPad
+version: 0.0.1
+api: 5.0.0
+main: LootSpace369\JumpPad\Loader
+author: LootSpace369
+commands:
+ setjumppad:
+  aliases: ["setjp"]
+  permission: jumppad.op
+  description: put jumppad
+ pospad:
+  aliases: ["pp"]
+  permission: jumppad.op
+  description: set pos jumppad
+permissions:
+ jumppad.op:
+  default: op
