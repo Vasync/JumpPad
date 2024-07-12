@@ -41,8 +41,8 @@ class Loader extends PluginBase {
                   return true;
                 }
                 if ($args[0] == 2) {
-                  $pos = $sender->getPosition();
-                  $this->pos2[$sender->getName()] = (int)$pos->getX().";".(int)$pos->getY().";".(int)$pos->getZ();
+                  $pos = $sender->getLocation();
+                  $this->pos2[$sender->getName()] = (int)$pos->getX().";".(int)$pos->getY().";".(int)$pos->getZ().";".$sender->getWorld()->getFolderName().";".$pos->getYaw().";".$pos->getPitch();
                   $sender->sendMessage("§aSuccess add position 2");
                   return true;
                 }
