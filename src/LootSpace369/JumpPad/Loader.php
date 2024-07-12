@@ -71,10 +71,9 @@ class Loader extends PluginBase {
               $sender->sendMessage("§cYou have not set coordinates 1  coordinates 2");
               return false;
             }
-            return true;
           }
         break;
       }
-      return false;
+      return true;
     }
 }
