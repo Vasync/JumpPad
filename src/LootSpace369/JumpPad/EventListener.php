@@ -37,7 +37,7 @@ class EventListener implements Listener {
       if ($pos === $ex[0]) {
         $motFlat = $player->getDirectionPlane()->normalize()->multiply($distance * 3.75 / 20);
         $mot = new Vector3($motFlat->x, 0.7, $motFlat->y);
-        $this->lookAtLocation($player, new Location(str_replace(";",",",$to))->add(0,0.5));
+        $this->lookAtLocation($player, (new Location(str_replace(";",",",$to)))->add(0,0.5));
         $player->setMotion($mot);
       }
     }
