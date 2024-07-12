@@ -35,15 +35,15 @@ class Loader extends PluginBase {
             if (isset($args[0])) {
               if ($args[0] == 1 or $args[0] == 2) {
                 if ($args[0] == 1) {
-                  $pos = $sender->getPosition();
-                  $this->pos1[$sender->getName()] = (int)$pos->getX().";".(int)$pos->getY().";".(int)$pos->getZ().";".$sender->getWorld()->getFolderName();
-                  $sender->sendMessage("đã add position 1");
+                  $pos = $sender->getLocation();
+                  $this->pos1[$sender->getName()] = (int)$pos->getX().";".(int)$pos->getY().";".(int)$pos->getZ().";".$sender->getWorld()->getFolderName().";".$pos->getYaw.";".$pos->getPitch();
+                  $sender->sendMessage("§aSuccess add position 1");
                   return true;
                 }
                 if ($args[0] == 2) {
                   $pos = $sender->getPosition();
                   $this->pos2[$sender->getName()] = (int)$pos->getX().";".(int)$pos->getY().";".(int)$pos->getZ();
-                  $sender->sendMessage("đã add position 2");
+                  $sender->sendMessage("§aSuccess add position 2");
                   return true;
                 }
               }else{
@@ -62,7 +62,7 @@ class Loader extends PluginBase {
               if (isset($this->pos2[$sender->getName()])) {
                 $this->getConfig()->set("JumpPad",array_merge($this->getConfig()->get("JumpPad"),[$this->pos1[$sender->getName()]."|".$this->pos2[$sender->getName()]]));
                 $this->getConfig()->save();
-                $sender->sendMessage("Tạo thành công jumppad");
+                $sender->sendMessage("success create JumpPad");
               }else{
                 $sender->sendMessage("§cYou have not set coordinates 1  coordinates 2");
                 return false;
