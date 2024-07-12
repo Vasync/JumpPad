@@ -20,7 +20,7 @@ class EventListener implements Listener {
     $angle = atan2((new Vector2($entity->getLocation()->x, $entity->getLocation()->z))->distance(new Vector2($location->x, $location->z)), $location->y - $this->getLocation()->y);
     $pitch = (($angle * 180) / M_PI) - 90;
 
-    $this->setRotation($yaw, $pitch);
+    $entity->setRotation($yaw, $pitch);
 
     return [$yaw, $pitch];
   }
