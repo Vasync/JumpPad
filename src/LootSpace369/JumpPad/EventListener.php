@@ -17,7 +17,7 @@ class EventListener implements Listener {
   public function lookAtLocation(Entity $entity, Location $location): array{
     $angle = atan2($location->z - $entity->getLocation()->z, $location->x - $entity->getLocation()->x);
     $yaw = (($angle * 180) / M_PI) - 90;
-    $angle = atan2((new Vector2($entity->getLocation()->x, $entity->getLocation()->z))->distance(new Vector2($location->x, $location->z)), $location->y - $this->getLocation()->y);
+    $angle = atan2((new Vector2($entity->getLocation()->x, $entity->getLocation()->z))->distance(new Vector2($location->x, $location->z)), $location->y - $entity->getLocation()->y);
     $pitch = (($angle * 180) / M_PI) - 90;
 
     $entity->setRotation($yaw, $pitch);
@@ -37,7 +37,7 @@ class EventListener implements Listener {
       if ($pos === $ex[0]) {
         $motFlat = $player->getDirectionPlane()->normalize()->multiply($distance * 3.75 / 20);
         $mot = new Vector3($motFlat->x, 0.7, $motFlat->y);
-        $this->lookAtLocation($player, (new Location($to[0],$to[1],$to[2],\pocketmine\Server::getInstance()->getWorldManager()->getWorldByName($to[3]),$to[4],$to[5]))->add(0,0.5));
+        $this->lookAtLocation($player, (new Location($to[0],$to[1],$to[2],\pocketmine\Server::getInstance()->getWorldManager()->getWorldByName($to[3]),$to[4],$to[5]))->add(0,0.5,0));
         $player->setMotion($mot);
       }
     }
