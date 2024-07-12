@@ -6,9 +6,24 @@ namespace LootSpace369\JumpPad;
 
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerMoveEvent;
+use pocketmine\math\Vector2;
 use pocketmine\math\Vector3;
+use pocketmine\entity\Entity;
+use pocketmine\entity\Location;
+
 
 class EventListener implements Listener {
+
+  public function lookAtLocation(Entity $entity, Location $location): array{
+    $angle = atan2($location->z - $entity->getLocation()->z, $location->x - $entity->getLocation()->x);
+    $yaw = (($angle * 180) / M_PI) - 90;
+    $angle = atan2((new Vector2($entity->getLocation()->x, $entity->getLocation()->z))->distance(new Vector2($location->x, $location->z)), $location->y - $this->getLocation()->y);
+    $pitch = (($angle * 180) / M_PI) - 90;
+
+    $this->setRotation($yaw, $pitch);
+
+    return [$yaw, $pitch];
+  }
   
   public function onMove(PlayerMoveEvent $ev) {
     $player = $ev->getPlayer();
@@ -22,6 +37,7 @@ class EventListener implements Listener {
       if ($pos === $ex[0]) {
         $motFlat = $player->getDirectionPlane()->normalize()->multiply($distance * 3.75 / 20);
         $mot = new Vector3($motFlat->x, 0.7, $motFlat->y);
+        $this->lookAtLocation($player, new Location(str_replace(";",",",$to))->add(0,0.5));
         $player->setMotion($mot);
       }
     }
