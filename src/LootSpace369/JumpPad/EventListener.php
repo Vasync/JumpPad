@@ -39,7 +39,7 @@ class EventListener implements Listener {
       if ($pos === $posCheck) {
         $motFlat = $player->getDirectionPlane()->normalize()->multiply($distance * 3.75 / 20);
         $mot = new Vector3($motFlat->x, 0.7, $motFlat->y);
-        $this->lookAtLocation($player, new Location((float)$to[0],(float)$to[1] + 0.7,(float)$to[2],\pocketmine\Server::getInstance()->getWorldManager()->getWorldByName($to[3]),(float)$to[4],(float)$to[5]));
+        $this->lookAtLocation($player, new Location((float)$to[0] / 1.5,(float)$to[1] + 0.7,(float)$to[2] / 1.5,\pocketmine\Server::getInstance()->getWorldManager()->getWorldByName($to[3]),(float)$to[4],(float)$to[5]));
         $player->setMotion($mot);
       }
     }
