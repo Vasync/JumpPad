@@ -31,10 +31,12 @@ class EventListener implements Listener {
     $pos = (int)$p->getX().";".(int)$p->getY().";".(int)$p->getZ().";".$player->getWorld()->getFolderName();
     foreach (Loader::getInstance()->getConfig()->get("JumpPad") as $pad) {
       $ex = explode("|", $pad);
+      $exCheck = explode(";", $ex[0]);
+      $posCheck = $exCheck[0].";".$exCheck[1].";".$exCheck[2].";".$exCheck[3];
       $to = explode(";", $ex[1]);
       $toPos = new Vector3((int)$to[0],(int)$to[1],(int)$to[2]);
       $distance = $p->distance($toPos)/2;
-      if ($pos === $ex[0]) {
+      if ($pos === $posCheck) {
         $motFlat = $player->getDirectionPlane()->normalize()->multiply($distance * 3.75 / 20);
         $mot = new Vector3($motFlat->x, 0.7, $motFlat->y);
         $this->lookAtLocation($player, (new Location($to[0],$to[1],$to[2],\pocketmine\Server::getInstance()->getWorldManager()->getWorldByName($to[3]),$to[4],$to[5]))->add(0,0.5,0));
