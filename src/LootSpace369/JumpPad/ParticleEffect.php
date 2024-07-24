@@ -1,6 +1,6 @@
 <?php
 
-declare(strcit_types = 1);
+declare(strict_types = 1);
 
 namespace LootSpace369\JumpPad;
 
