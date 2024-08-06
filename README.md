@@ -1,5 +1,6 @@
 # JumpPad
 A plugin jump pad for PocketMine-MP.
+<a href="https://poggit.pmmp.io/p/JumpPad"><img src="https://poggit.pmmp.io/shield.state/JumpPad"></a>
 
 `
 A plugin fast code
